@@ -28,7 +28,7 @@ ChartJS.register(
   Legend
 );
 
-const SERVER_URL = "http://115.241.211.186:8080";
+const SERVER_URL = "https://digitalmanufacturing.cutmap.ac.in";
 
 const lineChartOptions = {
   responsive: true,
@@ -435,39 +435,45 @@ export function Dashboard() {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 <AnimatePresence mode="popLayout">
-                  {events.map((event, index) => (
-                    <motion.tr
-                      key={event._id}
-                      className="hover:bg-gray-50 transition-colors duration-150"
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 20 }}
-                      transition={{ duration: 0.2, delay: index * 0.05 }}
-                    >
-                      <td
-                        className="px-6 py-4 whitespace-nowrap cursor-pointer"
-                        onClick={() => handleDeviceClick(event.device_id)}
+                  {events.map((event, index) => {
+                    const createdAtDate = new Date(event.createdAt);
+                    const eventDate = createdAtDate.toLocaleDateString();
+                    const eventTime = createdAtDate.toLocaleTimeString();
+
+                    return (
+                      <motion.tr
+                        key={event._id}
+                        className="hover:bg-gray-50 transition-colors duration-150"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 20 }}
+                        transition={{ duration: 0.2, delay: index * 0.05 }}
                       >
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-200">
-                          {event.device_id}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {event.date}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {event.time}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                          {event.touch_detected}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {formatDateTime(event.createdAt)}
-                      </td>
-                    </motion.tr>
-                  ))}
+                        <td
+                          className="px-6 py-4 whitespace-nowrap cursor-pointer"
+                          onClick={() => handleDeviceClick(event.device_id)}
+                        >
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors duration-200">
+                            {event.device_id}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {eventDate}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {eventTime}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            {event.touch_detected}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {formatDateTime(event.createdAt)}
+                        </td>
+                      </motion.tr>
+                    );
+                  })}
                 </AnimatePresence>
               </tbody>
             </table>
@@ -565,9 +571,6 @@ function StatsCard({ title, value, icon, gradient }) {
     </div>
   );
 }
-
-
-
 
 function formatDateTime(dateTimeStr) {
   return new Date(dateTimeStr).toLocaleString();
