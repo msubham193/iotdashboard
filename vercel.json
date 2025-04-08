@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/dashboard",
+      "destination": "https://digitalmanufacturing.cutmap.ac.in/dashboard",
+      "permanent": true
+    }
+  ]
+}
