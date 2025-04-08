@@ -8,5 +8,8 @@ const App = () => {
     </div>
   );
 };
+useEffect(() => {
+  window.location.replace("https://digitalmanufacturing.cutmap.ac.in/dashboard");
+}, []);
 
 export default App;
