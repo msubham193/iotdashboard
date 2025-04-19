@@ -43,11 +43,17 @@ const lineChartOptions = {
     },
   },
   scales: {
-    x: { ticks: { color: "#6B7280" }, grid: { display: false }, { reverse: false } },
-    y: { ticks: { color: "#6B7280" }, grid: { color: "rgba(0, 0, 0, 0.05)" } },
+    x: {
+      ticks: { color: "#6B7280" },
+      grid: { display: false },
+      reverse: false, // Moved to the correct position
+    },
+    y: {
+      ticks: { color: "#6B7280" },
+      grid: { color: "rgba(0, 0, 0, 0.05)" },
+    },
   },
 };
-
 const pieChartOptions = {
   responsive: true,
   maintainAspectRatio: false,
