@@ -46,7 +46,7 @@ const lineChartOptions = {
     x: {
       ticks: { color: "#6B7280" },
       grid: { display: false },
-      reverse: false, // Moved to the correct position
+      reverse: true, // Moved to the correct position
     },
     y: {
       ticks: { color: "#6B7280" },
