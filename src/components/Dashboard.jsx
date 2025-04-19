@@ -43,7 +43,7 @@ const lineChartOptions = {
     },
   },
   scales: {
-    x: { ticks: { color: "#6B7280" }, grid: { display: false }, { reverse: false },
+    x: { ticks: { color: "#6B7280" }, grid: { display: false }, { reverse: false } },
     y: { ticks: { color: "#6B7280" }, grid: { color: "rgba(0, 0, 0, 0.05)" } },
   },
 };
